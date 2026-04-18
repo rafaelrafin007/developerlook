@@ -444,10 +444,18 @@
 
 .intro-title {
   margin: 0;
-  font-size: clamp(2.05rem, 4.25vw, 4.4rem);
-  line-height: 0.95;
-  letter-spacing: -0.042em;
-  max-width: 15ch;
+  font-size: clamp(2.15rem, 4.2vw, 4.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.043em;
+  max-width: none;
+}
+
+.intro-title span {
+  display: inline;
+}
+
+.intro-title-break {
+  display: block;
 }
 
 .intro-grid {
