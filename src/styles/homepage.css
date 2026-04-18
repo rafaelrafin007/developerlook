@@ -337,7 +337,9 @@
 }
 
 .hero-cards {
-  margin-top: clamp(1.25rem, 2vw, 2rem);
+  width: min(100%, 92rem);
+  margin-inline: auto;
+  margin-top: clamp(0.72rem, 1.85vw, 1.32rem);
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: end;
@@ -345,11 +347,11 @@
 }
 
 .hero-card {
-  aspect-ratio: 4.8 / 6.2;
-  width: 100%;
+  aspect-ratio: 4.8 / 5.9;
+  width: 96%;
   border-radius: 1.35rem;
   overflow: hidden;
-  margin-left: -11%;
+  margin-left: -9%;
   position: relative;
   box-shadow: 0 9px 18px #00000014;
   will-change: transform;
@@ -439,7 +441,8 @@
 
 
 .intro-section {
-  padding-block: clamp(2.3rem, 5.1vw, 3.85rem);
+  padding-top: clamp(5rem, 8vw, 7rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .intro-title {
