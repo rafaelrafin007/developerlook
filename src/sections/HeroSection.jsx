@@ -163,7 +163,6 @@ function HeroSection() {
           </article>
         </div>
       </div>
-      <div className="hero-divider" />
     </section>
   )
 }

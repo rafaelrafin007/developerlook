@@ -289,8 +289,8 @@
 }
 
 .header-results-btn .action-btn__icon svg {
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 0.82rem;
+  height: 0.98rem;
 }
 
 .footer-results-btn .action-btn__icon {
@@ -337,7 +337,7 @@
 }
 
 .hero-cards {
-  margin-top: clamp(0.72rem, 1.85vw, 1.32rem);
+  margin-top: clamp(1.25rem, 2vw, 2rem);
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: end;
@@ -436,11 +436,7 @@
   object-position: 52% 42%;
 }
 
-.hero-divider {
-  margin-top: -0.65rem;
-  height: clamp(94px, 10vw, 152px);
-  background: var(--gh-pink);
-}
+
 
 .intro-section {
   padding-block: clamp(2.3rem, 5.1vw, 3.85rem);
@@ -1093,9 +1089,6 @@
     display: none;
   }
 
-  .hero-divider {
-    height: clamp(82px, 12vw, 110px);
-  }
 
   .intro-grid {
     grid-template-columns: 1fr;
@@ -1266,11 +1259,6 @@
   .hero-card__meta h3,
   .hero-card__meta p {
     display: none;
-  }
-
-  .hero-divider {
-    margin-top: -0.15rem;
-    height: 70px;
   }
 
   .intro-section {
