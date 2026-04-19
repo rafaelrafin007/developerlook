@@ -14,7 +14,9 @@ function IntroSection() {
           <br className="intro-title-break" />
           <span>brengt. Snel, krachtig en energiek.</span>
         </h2>
+      </div>
 
+      <div className="intro-grid-shell">
         <div className="intro-grid">
           <div className="intro-image-wrap">
             <img src={introImage} alt="Team member in orange outfit" className="intro-image" />
@@ -22,16 +24,28 @@ function IntroSection() {
 
           <div className="intro-content">
             <p>
-              We stoppen niet bij mooie plaatjes en vette beelden. We maken het meetbaar. Zo weet je precies wat werkt
-              en wat niet. Nooit meer content zonder strategie. Nooit meer content zonder resultaat.
+              We stoppen niet bij mooie plaatjes en
+              <br />
+              vette beelden. We maken het meetbaar.
+              <br />
+              Zo weet je precies wat werkt en wat niet.
+              <br />
+              Nooit meer content zonder strategie.
+              <br />
+              Nooit meer content zonder resultaat.
             </p>
             <ActionButton label="Leer ons kennen" variant="outline" />
           </div>
 
           <a href="#expertises" className="intro-scroll-btn" aria-label="Scroll to expertises">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m12 4 7 8h-5v8H10v-8H5z" />
-            </svg>
+            <span className="intro-scroll-btn__icons" aria-hidden="true">
+              <svg className="intro-scroll-btn__icon is-current" viewBox="0 0 24 24">
+                <path d="m12 20-7-8h5V4h4v8h5z" />
+              </svg>
+              <svg className="intro-scroll-btn__icon is-next" viewBox="0 0 24 24">
+                <path d="m12 20-7-8h5V4h4v8h5z" />
+              </svg>
+            </span>
           </a>
         </div>
       </div>

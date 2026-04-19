@@ -14,9 +14,13 @@ function SiteHeader() {
   const [headerHidden, setHeaderHidden] = useState(false)
 
   useEffect(() => {
+    const root = document.documentElement
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    root.style.overflow = mobileOpen ? 'hidden' : ''
+
     return () => {
       document.body.style.overflow = ''
+      root.style.overflow = ''
     }
   }, [mobileOpen])
 
@@ -24,7 +28,14 @@ function SiteHeader() {
     let lastScrollY = window.scrollY
 
     const handleScroll = () => {
+      const isDesktop = window.innerWidth > 991
       const currentScrollY = window.scrollY
+
+      if (!isDesktop) {
+        setHeaderHidden(false)
+        lastScrollY = currentScrollY
+        return
+      }
 
       if (mobileOpen) {
         setHeaderHidden(false)
@@ -54,10 +65,38 @@ function SiteHeader() {
     }
   }, [mobileOpen])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 991) {
+        setMobileOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleKeydown = (event) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeydown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeydown)
+    }
+  }, [])
+
   const closeMenu = () => setMobileOpen(false)
 
   return (
-    <header className={`site-header ${headerHidden ? 'is-hidden' : ''}`}>
+    <header className={`site-header ${headerHidden ? 'is-hidden' : ''} ${mobileOpen ? 'is-menu-open' : ''}`}>
       <div className="site-header__bar">
         <a href="#top" className="site-header__logo" aria-label="Home">
           <HypedLogo className="logo-svg" />
@@ -86,9 +125,9 @@ function SiteHeader() {
           className={`menu-toggle ${mobileOpen ? 'is-open' : ''}`}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           onClick={() => setMobileOpen((prev) => !prev)}
         >
-          <span className="menu-toggle__text">{mobileOpen ? 'Close' : 'Menu'}</span>
           <span className="menu-toggle__lines" aria-hidden="true">
             <span />
             <span />
@@ -96,10 +135,17 @@ function SiteHeader() {
         </button>
       </div>
 
-      <div id="mobile-menu" className={`mobile-menu ${mobileOpen ? 'is-open' : ''}`}>
+      <button
+        type="button"
+        className={`mobile-menu-backdrop ${mobileOpen ? 'is-open' : ''}`}
+        aria-label="Close mobile menu"
+        onClick={closeMenu}
+      />
+
+      <div id="mobile-menu" className={`mobile-menu ${mobileOpen ? 'is-open' : ''}`} aria-hidden={!mobileOpen}>
         <nav className="mobile-menu__links" aria-label="Mobile">
           {NAV_LINKS.map((link) => (
-            <a key={link.label} href={link.href} onClick={closeMenu}>
+            <a key={link.label} href={link.href} className="mobile-menu__link" onClick={closeMenu}>
               {link.label}
             </a>
           ))}

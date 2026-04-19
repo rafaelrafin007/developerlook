@@ -17,7 +17,7 @@ const WORK_ITEMS = [
     color: 'blue',
   },
   {
-    title: 'Content die echt smaakt (en raakt)',
+    title: 'Content die écht smaakt (en raakt)',
     brand: 'Loco',
     image: workLoco,
     color: 'green',
@@ -35,7 +35,7 @@ function WorkSection() {
             dat scoort.
           </h2>
           <p>
-            Wij vertellen jouw verhaal. Op een manier die echt past bij jouw doelgroep. Met creatieve content die werkt
+            Wij vertellen jouw verhaal. Op een manier die écht past bij jouw doelgroep. Met creatieve content die werkt
             en het verschil maakt.
           </p>
           <ActionButton label="Bekijk al ons werk" variant="outline" />

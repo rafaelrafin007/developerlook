@@ -59,7 +59,7 @@ function FooterSection() {
           </div>
 
           <div className="site-footer__credits">
-            <span>&copy; 2026 Get Hyped</span>
+            <span>&copy; 2025 Get Hyped</span>
             <span>&copy; Design by Dylan</span>
           </div>
 
