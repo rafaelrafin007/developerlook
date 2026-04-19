@@ -324,9 +324,6 @@
 
 .header-results-btn .action-btn__icon {
   transition: transform 0.15s ease-out, background-color 0.24s ease, color 0.24s ease;
-}
-
-.header-results-btn .action-btn__icon {
   background: #fff;
   color: var(--gh-red);
   width: 1.78rem;
