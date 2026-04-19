@@ -16,6 +16,7 @@ const EXPERTISES = [
     button: 'Meer over social strategie',
     theme: 'white',
     image: workRoasta,
+    video: 'https://gethyped.b-cdn.net/MD/MD%20Loop%20Schaken.mp4',
     imageAlt: 'Social strategy visual',
   },
   {
@@ -26,6 +27,7 @@ const EXPERTISES = [
     button: 'Meer over content creatie',
     theme: 'pink',
     image: heroThumb1,
+    video: 'https://gethyped.b-cdn.net/Expertises/Loop%20BTS%20comp.mp4',
     imageAlt: 'Content creation visual',
   },
   {
@@ -36,6 +38,7 @@ const EXPERTISES = [
     button: 'Meer over activatie',
     theme: 'green',
     image: heroThumb2,
+    video: 'https://gethyped.b-cdn.net/Over%20de%20Top/overdetop-loop.mp4',
     imageAlt: 'Activation visual',
   },
   {
@@ -46,6 +49,7 @@ const EXPERTISES = [
     button: 'Meer over data',
     theme: 'blue',
     image: workBullit,
+    video: 'https://gethyped.b-cdn.net/Expertises/Data%20comp.mp4',
     imageAlt: 'Data visual',
   },
 ]
@@ -59,10 +63,30 @@ function ExpertisesSection() {
     const section = sectionRef.current
     const list = listRef.current
     const cards = cardRefs.current.filter(Boolean)
+    const videos = section?.querySelectorAll('.expertise-card__video') ?? []
 
     if (!section || !list || cards.length === 0) {
       return undefined
     }
+
+    const playVideo = (video) => {
+      video.muted = true
+      video.defaultMuted = true
+      const playAttempt = video.play()
+
+      if (playAttempt && typeof playAttempt.catch === 'function') {
+        playAttempt.catch(() => {})
+      }
+    }
+
+    const handleVideoLoaded = (event) => {
+      playVideo(event.currentTarget)
+    }
+
+    videos.forEach((video) => {
+      video.addEventListener('loadeddata', handleVideoLoaded)
+      playVideo(video)
+    })
 
     gsap.registerPlugin(ScrollTrigger)
 
@@ -133,6 +157,9 @@ function ExpertisesSection() {
     })
 
     return () => {
+      videos.forEach((video) => {
+        video.removeEventListener('loadeddata', handleVideoLoaded)
+      })
       media.revert()
       section.classList.remove('is-scroll-stack')
     }
@@ -142,32 +169,47 @@ function ExpertisesSection() {
     <section id="expertises" className="expertises-section" ref={sectionRef}>
       <div className="page-shell">
         <div className="expertises-list" ref={listRef}>
-          {EXPERTISES.map((item, index) => (
-            <article
-              key={item.number}
-              className={`expertise-card expertise-card--${item.theme}`}
-              ref={(node) => {
-                cardRefs.current[index] = node
-              }}
-            >
-              <header className="expertise-card__top">
-                <span className="expertise-label">Expertise</span>
-                <h2>{item.title}</h2>
-                <span className="expertise-number">{item.number}</span>
-              </header>
+          {EXPERTISES.map((item, index) => {
+            const orderedNumber = String(index + 1).padStart(2, '0')
 
-              <div className="expertise-card__content">
-                <div className="expertise-card__copy">
-                  <h3>{item.subtitle}</h3>
-                  <p>{item.text}</p>
-                  <ActionButton label={item.button} />
+            return (
+              <article
+                key={item.number}
+                className={`expertise-card expertise-card--${item.theme}`}
+                ref={(node) => {
+                  cardRefs.current[index] = node
+                }}
+              >
+                <header className="expertise-card__top">
+                  <span className="expertise-label">Expertise</span>
+                  <h2>{item.title}</h2>
+                  <span className="expertise-number">{orderedNumber}</span>
+                </header>
+
+                <div className="expertise-card__content">
+                  <div className="expertise-card__copy">
+                    <h3>{item.subtitle}</h3>
+                    <p>{item.text}</p>
+                    <ActionButton label={item.button} />
+                  </div>
+                  <div className="expertise-card__media">
+                    <video
+                      className="expertise-card__video"
+                      muted
+                      loop
+                      playsInline
+                      autoPlay
+                      preload="auto"
+                      poster={item.image}
+                    >
+                      <source src={item.video} type="video/mp4" />
+                      <img src={item.image} alt={item.imageAlt} />
+                    </video>
+                  </div>
                 </div>
-                <div className="expertise-card__media">
-                  <img src={item.image} alt={item.imageAlt} />
-                </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

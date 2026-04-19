@@ -8,18 +8,21 @@ const WORK_ITEMS = [
     title: 'Van nul naar vol, binnen 3 weken',
     brand: 'Bullit',
     image: workBullit,
+    video: 'https://gethyped.b-cdn.net/Bullit/Bullit%20%7C%20Loop.mp4',
     color: 'red',
   },
   {
     title: 'Zacht in smaak, sterk in beeld',
     brand: 'Roasta',
     image: workRoasta,
+    video: 'https://gethyped.b-cdn.net/Roasta/roasta-loop.mp4',
     color: 'blue',
   },
   {
     title: 'Content die écht smaakt (en raakt)',
     brand: 'Loco',
     image: workLoco,
+    video: 'https://gethyped.b-cdn.net/Loco/loco-bites-loop.mp4',
     color: 'green',
   },
 ]
@@ -44,15 +47,30 @@ function WorkSection() {
         <div className="work-grid">
           {WORK_ITEMS.map((item) => (
             <article key={item.brand} className={`work-card work-card--${item.color}`}>
-              <img src={item.image} alt={`${item.brand} case visual`} />
+              <div className="work-card__media">
+                <img className="work-card__image" src={item.image} alt={`${item.brand} case visual`} />
+                <video
+                  className="work-card__video"
+                  muted
+                  loop
+                  playsInline
+                  autoPlay
+                  preload="metadata"
+                  poster={item.image}
+                >
+                  <source src={item.video} type="video/mp4" />
+                </video>
+              </div>
+
               <div className="work-card__overlay">
                 <h3>{item.title}</h3>
                 <span>{item.brand}</span>
-                <div className="work-card__arrow">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M7 17 17 7M8 7h9v9" />
-                  </svg>
-                </div>
+              </div>
+
+              <div className="work-card__arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7M8 7h9v9" />
+                </svg>
               </div>
             </article>
           ))}
@@ -63,3 +81,4 @@ function WorkSection() {
 }
 
 export default WorkSection
+
