@@ -652,6 +652,10 @@
   padding-block: clamp(1.4rem, 4vw, 2.75rem);
 }
 
+.expertises-section .page-shell {
+  width: min(1920px, 100% - 2.5rem);
+}
+
 .expertises-list {
   display: grid;
   gap: clamp(0.85rem, 1.5vw, 1.15rem);
@@ -681,7 +685,11 @@
 }
 
 .expertise-card--white {
-  background: #f3f3f1;
+  background: #fff;
+}
+
+.expertise-card--white .expertise-number {
+  color: var(--gh-cream);
 }
 
 .expertise-card--pink {
@@ -698,30 +706,38 @@
 
 .expertise-card__top {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'label number'
+    'title number';
   align-items: start;
-  gap: 0.7rem;
+  column-gap: 0.7rem;
+  row-gap: 0.55rem;
   position: relative;
   z-index: 5;
 }
 
 .expertise-label {
+  grid-area: label;
   background: #fff;
   border-radius: 0.3rem;
   padding: 0.26rem 0.45rem;
-  font-size: 0.82rem;
+  font-size: 1.18rem;
   line-height: 1;
+  width: fit-content;
 }
 
 .expertise-card__top h2 {
+  grid-area: title;
   margin: 0;
-  font-size: clamp(2.1rem, 4.25vw, 3.95rem);
+  font-size: clamp(2.52rem, 5.1vw, 4.74rem);
   line-height: 0.9;
   letter-spacing: -0.04em;
 }
 
 .expertise-number {
-  font-size: clamp(2.25rem, 4.1vw, 4.1rem);
+  grid-area: number;
+  font-size: clamp(2.835rem, 5.166vw, 5.166rem);
   line-height: 0.95;
   font-weight: 700;
   letter-spacing: -0.035em;
@@ -765,7 +781,7 @@
 .expertise-card__media {
   position: absolute;
   right: clamp(1rem, 2.3vw, 2.7rem);
-  top: clamp(8rem, 10.7vw, 11.25rem);
+  top: calc(clamp(8rem, 10.7vw, 11.25rem) - 450px);
   width: clamp(250px, 24vw, 368px);
   border-radius: 1.35rem;
   overflow: hidden;
@@ -826,10 +842,10 @@
 }
 
 .work-grid {
-  margin-top: clamp(1.45rem, 3vw, 2.6rem);
+  margin-top: calc(clamp(1.45rem, 3vw, 2.6rem) - 100px);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 1.7vw, 1.6rem);
+  gap: clamp(0.8rem, 1.36vw, 1.28rem);
   justify-items: center;
   align-items: start;
 }
@@ -838,25 +854,25 @@
   position: relative;
   border-radius: 1.72rem;
   overflow: hidden;
-  width: min(100%, 30rem);
+  width: min(100%, 24rem);
   aspect-ratio: 14.8 / 19.18;
   padding: 0.4rem;
   background: #fff;
-  transform: rotate(-1.8deg);
+  transform: rotate(0deg);
 }
 
 .work-card:nth-child(2) {
-  margin-top: clamp(3.6rem, 4.8vw, 4.8rem);
-  transform: rotate(1deg);
+  margin-top: clamp(2.88rem, 3.84vw, 3.84rem);
+  transform: rotate(0deg);
 }
 
 .work-card:nth-child(3) {
-  margin-top: clamp(-0.55rem, -0.3vw, -0.2rem);
-  transform: rotate(-0.8deg);
+  margin-top: clamp(-0.44rem, -0.24vw, -0.16rem);
+  transform: rotate(0deg);
 }
 
 .work-card:nth-child(1) {
-  margin-top: clamp(8rem, 10.3vw, 11.2rem);
+  margin-top: clamp(6.4rem, 8.24vw, 8.96rem);
 }
 
 .work-card__media {
@@ -883,6 +899,16 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .work-card {
+    transform-origin: left top;
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .work-card:hover,
+  .work-card:focus-within {
+    transform: translateX(-6px) rotate(-0.8deg);
+  }
+
   .work-card:hover .work-card__video,
   .work-card:focus-within .work-card__video {
     opacity: 1;
@@ -975,16 +1001,22 @@
 }
 
 .brands-section {
-  border-top: 1px solid #0000002b;
+  border-top: 0;
   padding-block: clamp(2.7rem, 6.6vw, 5.6rem) clamp(2.4rem, 6.2vw, 5rem);
+}
+
+.brands-section .page-shell {
+  width: 100%;
 }
 
 .brands-section h2 {
   margin: 0;
+  margin-left: 25px;
   font-size: clamp(2.5rem, 5.15vw, 4.95rem);
   line-height: 0.91;
   letter-spacing: -0.045em;
-  max-width: 6.7ch;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .brands-marquee {
@@ -1032,11 +1064,11 @@
 
 @keyframes brands-slide-right {
   from {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
 
   to {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
 }
 
@@ -1108,6 +1140,8 @@
 
 .site-footer__panel {
   position: relative;
+  z-index: 0;
+  isolation: isolate;
   padding: clamp(2.55rem, 5.2vw, 3.8rem) clamp(1.3rem, 2.9vw, 2.35rem) 1.35rem;
   display: grid;
   grid-template-columns: 1fr minmax(290px, 1.18fr) minmax(215px, 0.95fr);
@@ -1120,11 +1154,17 @@
 .site-footer__panel::before {
   content: '';
   position: absolute;
-  inset: 2.25rem 0 0;
-  background: var(--gh-taupe);
-  border-radius: 1.65rem;
-  clip-path: polygon(0 39%, 100% 12%, 100% 100%, 0 100%);
-  z-index: -1;
+  inset: clamp(1.6rem, 2.8vw, 2.45rem) 0 0;
+  background: #ece6dc;
+  border-radius: clamp(1.35rem, 2vw, 1.85rem);
+  clip-path: polygon(0 44%, 8% 41%, 20% 37%, 33% 33%, 48% 28%, 63% 22%, 78% 16%, 100% 10%, 100% 100%, 0 100%);
+  box-shadow: inset 0 0 0 1px #00000008;
+  z-index: 0;
+}
+
+.site-footer__panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .site-footer__sticker {
@@ -1175,7 +1215,7 @@
   grid-column: 2;
   grid-row: 1;
   justify-self: start;
-  align-self: end;
+  align-self: start;
   display: flex;
   gap: 0.42rem;
   flex-wrap: wrap;
@@ -1226,11 +1266,12 @@
   align-self: start;
   text-align: left;
   margin-right: clamp(0rem, 0.8vw, 0.8rem);
+  margin-top: 0;
 }
 
 .site-footer__contact h3 {
   margin: 0 0 0.25rem;
-  font-size: 1.12rem;
+  font-size: 1.06rem;
 }
 
 .site-footer__contact a,
@@ -1239,7 +1280,7 @@
   margin: 0;
   line-height: 1.38;
   font-weight: 500;
-  font-size: 1.04rem;
+  font-size: 0.99rem;
 }
 
 .site-footer__contact h3 + a {
@@ -1526,7 +1567,7 @@
   .work-card {
     flex: 0 0 min(66vw, 330px);
     margin-top: 0;
-    transform: rotate(-1.1deg);
+    transform: rotate(0deg);
   }
 
   .work-card:nth-child(1) {
@@ -1535,12 +1576,12 @@
 
   .work-card:nth-child(2) {
     margin-top: 1.35rem;
-    transform: rotate(0.95deg);
+    transform: rotate(0deg);
   }
 
   .work-card:nth-child(3) {
     margin-top: 0.25rem;
-    transform: rotate(-0.8deg);
+    transform: rotate(0deg);
   }
 
   .work-card__media {
@@ -1632,6 +1673,14 @@
 }
 
 @media (min-width: 992px) {
+  .site-footer__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 400px;
+  }
+
   .intro-section .page-shell {
     width: min(1460px, 100% - 8.6rem);
   }
@@ -1647,8 +1696,16 @@
     letter-spacing: -0.04em;
   }
 
+  .expertise-card__copy {
+    margin-top: 300px;
+  }
+
   .hero-copy h1 {
     max-width: 15.2ch;
+  }
+
+  .work-intro {
+    margin-left: 100px;
   }
 
   .hero-heading-break {
@@ -1753,7 +1810,7 @@
   }
 
   .expertise-label {
-    font-size: 0.68rem;
+    font-size: 0.98rem;
   }
 
   .expertise-number {
@@ -1761,7 +1818,7 @@
   }
 
   .expertise-card__top h2 {
-    font-size: clamp(1.85rem, 12vw, 3rem);
+    font-size: clamp(2.22rem, 14.4vw, 3.6rem);
   }
 
   .expertise-card__content {

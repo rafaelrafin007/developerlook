@@ -49,7 +49,11 @@ function BrandsSection() {
   return (
     <section className="brands-section">
       <div className="page-shell">
-        <h2>These brands got hyped.</h2>
+        <h2>
+          This brands
+          <br />
+          got hyped!!
+        </h2>
 
         <div className="brands-marquee" aria-label="Client logos">
           <div className="brands-track">
