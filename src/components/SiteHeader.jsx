@@ -11,6 +11,7 @@ const NAV_LINKS = [
 
 function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [headerHidden, setHeaderHidden] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -19,10 +20,44 @@ function SiteHeader() {
     }
   }, [mobileOpen])
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+
+      if (mobileOpen) {
+        setHeaderHidden(false)
+        lastScrollY = currentScrollY
+        return
+      }
+
+      if (currentScrollY <= 12) {
+        setHeaderHidden(false)
+        lastScrollY = currentScrollY
+        return
+      }
+
+      if (currentScrollY > lastScrollY + 6) {
+        setHeaderHidden(true)
+      } else if (currentScrollY < lastScrollY - 6) {
+        setHeaderHidden(false)
+      }
+
+      lastScrollY = currentScrollY
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [mobileOpen])
+
   const closeMenu = () => setMobileOpen(false)
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${headerHidden ? 'is-hidden' : ''}`}>
       <div className="site-header__bar">
         <a href="#top" className="site-header__logo" aria-label="Home">
           <HypedLogo className="logo-svg" />
