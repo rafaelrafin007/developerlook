@@ -1,3 +1,6 @@
+import { useLayoutEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ActionButton from '../components/ActionButton'
 import heroThumb1 from '../assets/gethyped/hero-thumb-1.avif'
 import heroThumb2 from '../assets/gethyped/hero-thumb-2.avif'
@@ -48,12 +51,105 @@ const EXPERTISES = [
 ]
 
 function ExpertisesSection() {
+  const sectionRef = useRef(null)
+  const listRef = useRef(null)
+  const cardRefs = useRef([])
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current
+    const list = listRef.current
+    const cards = cardRefs.current.filter(Boolean)
+
+    if (!section || !list || cards.length === 0) {
+      return undefined
+    }
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    const media = gsap.matchMedia()
+
+    media.add('(min-width: 992px) and (prefers-reduced-motion: no-preference)', () => {
+      section.classList.add('is-scroll-stack')
+
+      const context = gsap.context(() => {
+        const cardCount = cards.length
+        const enterOffset = 108
+        const baseRotations = [0, -1.2, 1.05, -0.7]
+        const baseX = [0, 0.7, -0.6, 0.45]
+
+        gsap.set(cards, {
+          yPercent: (index) => (index === 0 ? 0 : enterOffset),
+          xPercent: (index) => baseX[index] ?? 0,
+          rotate: (index) => baseRotations[index] ?? 0,
+          scale: 1,
+          opacity: 1,
+          zIndex: (index) => index + 1,
+          transformOrigin: '50% 12%',
+        })
+
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top+=88',
+            end: () => `+=${Math.max((cardCount - 1) * window.innerHeight * 0.82, 1200)}`,
+            scrub: 0.45,
+            pin: list,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        })
+
+        cards.slice(1).forEach((card, index) => {
+          const previousCard = cards[index]
+
+          timeline
+            .to(
+              card,
+              {
+                yPercent: 0,
+                duration: 1,
+                ease: 'none',
+              },
+              '+=0.24',
+            )
+            .to(
+              previousCard,
+              {
+                scale: 0.968,
+                yPercent: -2.5,
+                opacity: 0.96,
+                duration: 1,
+                ease: 'none',
+              },
+              '<',
+            )
+        })
+      }, section)
+
+      return () => {
+        context.revert()
+        section.classList.remove('is-scroll-stack')
+      }
+    })
+
+    return () => {
+      media.revert()
+      section.classList.remove('is-scroll-stack')
+    }
+  }, [])
+
   return (
-    <section id="expertises" className="expertises-section">
+    <section id="expertises" className="expertises-section" ref={sectionRef}>
       <div className="page-shell">
-        <div className="expertises-list">
-          {EXPERTISES.map((item) => (
-            <article key={item.number} className={`expertise-card expertise-card--${item.theme}`}>
+        <div className="expertises-list" ref={listRef}>
+          {EXPERTISES.map((item, index) => (
+            <article
+              key={item.number}
+              className={`expertise-card expertise-card--${item.theme}`}
+              ref={(node) => {
+                cardRefs.current[index] = node
+              }}
+            >
               <header className="expertise-card__top">
                 <span className="expertise-label">Expertise</span>
                 <h2>{item.title}</h2>

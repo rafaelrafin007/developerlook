@@ -6,17 +6,15 @@ function IntroSection() {
     <section id="about" className="intro-section">
       <div className="page-shell">
         <h2 className="intro-title">
-          <span>Wij maken content die opvalt. Die</span>
+          Wij maken content die opvalt. Die
           <br className="intro-title-break" />
-          <span>blijft hangen. Die jouw doelgroep</span>
+          blijft hangen. Die jouw doelgroep
           <br className="intro-title-break" />
-          <span>raakt en jouw merk in beweging</span>
+          raakt en jouw merk in beweging
           <br className="intro-title-break" />
-          <span>brengt. Snel, krachtig en energiek.</span>
+          brengt. Snel, krachtig en energiek.
         </h2>
-      </div>
 
-      <div className="intro-grid-shell">
         <div className="intro-grid">
           <div className="intro-image-wrap">
             <img src={introImage} alt="Team member in orange outfit" className="intro-image" />
@@ -34,6 +32,7 @@ function IntroSection() {
               <br />
               Nooit meer content zonder resultaat.
             </p>
+
             <ActionButton label="Leer ons kennen" variant="outline" />
           </div>
 

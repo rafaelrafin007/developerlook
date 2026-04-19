@@ -507,8 +507,12 @@
 
 
 .intro-section {
-  padding-top: clamp(5rem, 8vw, 7rem);
-  padding-bottom: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(3.1rem, 5.2vw, 4.85rem);
+  padding-bottom: clamp(2rem, 3.6vw, 3rem);
+}
+
+.intro-section .page-shell {
+  width: min(1560px, 100% - 2.35rem);
 }
 
 .intro-grid-shell {
@@ -518,9 +522,9 @@
 
 .intro-title {
   margin: 0;
-  font-size: clamp(2.15rem, 4.2vw, 4.5rem);
-  line-height: 0.94;
-  letter-spacing: -0.043em;
+  font-size: clamp(2.25rem, 5.72vw, 5.95rem);
+  line-height: 0.93;
+  letter-spacing: -0.047em;
   max-width: none;
 }
 
@@ -533,17 +537,15 @@
 }
 
 .intro-grid {
-  margin-top: clamp(2.6rem, 5.4vw, 4.8rem);
+  margin-top: clamp(1.55rem, 2.7vw, 2.55rem);
   display: grid;
-  grid-template-columns: minmax(205px, 268px) minmax(0, 1fr) auto;
-  max-width: 1620px;
-  margin-inline: auto;
+  grid-template-columns: minmax(240px, 320px) minmax(24rem, 35.5rem) minmax(56px, 1fr);
   align-items: end;
-  column-gap: clamp(1.75rem, 6.2vw, 7.8rem);
+  column-gap: clamp(1.8rem, 5vw, 4.5rem);
 }
 
 .intro-image-wrap {
-  width: clamp(205px, 18vw, 268px);
+  width: clamp(238px, 18.5vw, 312px);
   aspect-ratio: 4 / 5.35;
   border-radius: 0.92rem;
   overflow: hidden;
@@ -558,22 +560,23 @@
 }
 
 .intro-content {
-  max-width: 31ch;
-  justify-self: center;
+  align-self: end;
+  justify-self: start;
+  max-width: 38rem;
 }
 
 .intro-content p {
-  margin: 0 0 0.9rem;
-  font-size: clamp(1.08rem, 1.45vw, 1.58rem);
-  line-height: 1.22;
-  letter-spacing: -0.014em;
+  margin: 0;
+  max-width: 39rem;
+  font-size: clamp(1.15rem, 1.34vw, 1.72rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   font-weight: 600;
 }
 
 .intro-content .action-btn {
-  font-size: 1.04rem;
-  padding: 0.4rem 0.42rem 0.4rem 0.84rem;
-  border-radius: 0.78rem;
+  margin-top: 1.2rem;
+  font-size: 1.01rem;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -594,15 +597,16 @@
 }
 
 .intro-scroll-btn {
-  width: 3.05rem;
-  height: 3.05rem;
+  width: 3.35rem;
+  height: 3.35rem;
   border: 1px solid #00000052;
   border-radius: 0.78rem;
   color: var(--gh-red);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  justify-self: start;
+  justify-self: end;
+  align-self: end;
   overflow: hidden;
   position: relative;
   transition: background-color 0.2s ease, border-color 0.2s ease;
@@ -620,8 +624,8 @@
 }
 
 .intro-scroll-btn__icon {
-  width: 1.26rem;
-  height: 1.26rem;
+  width: 1.42rem;
+  height: 1.42rem;
   fill: currentColor;
   position: absolute;
   left: 50%;
@@ -663,6 +667,21 @@
   padding: clamp(0.82rem, 1.45vw, 1.18rem);
   position: relative;
   overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.expertises-section.is-scroll-stack .expertises-list {
+  display: block;
+  position: relative;
+  min-height: clamp(500px, 43vw, 640px);
+  overflow: hidden;
+}
+
+.expertises-section.is-scroll-stack .expertise-card {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  box-shadow: 0 18px 38px #00000014;
 }
 
 .expertise-card--white {
@@ -1282,16 +1301,40 @@
 
   .intro-grid {
     grid-template-columns: 1fr;
-    gap: 0.9rem;
+    margin-top: 1.1rem;
+    gap: 1rem;
     align-items: start;
   }
 
+  .intro-title-break {
+    display: none;
+  }
+
   .intro-image-wrap {
-    width: min(44vw, 170px);
+    width: min(52vw, 235px);
+  }
+
+  .intro-content {
+    max-width: 34rem;
   }
 
   .intro-scroll-btn {
     display: none;
+  }
+
+  .expertises-section.is-scroll-stack .expertises-list {
+    display: grid;
+    position: static;
+    min-height: 0;
+    overflow: visible;
+    gap: clamp(0.85rem, 1.5vw, 1.15rem);
+  }
+
+  .expertises-section.is-scroll-stack .expertise-card {
+    position: relative;
+    inset: auto;
+    margin: 0;
+    box-shadow: none;
   }
 
   .expertise-card__content {
@@ -1473,16 +1516,16 @@
 
   .intro-title {
     font-size: clamp(2rem, 11.8vw, 3.3rem);
-    max-width: 10ch;
+    max-width: 11ch;
   }
 
   .intro-image-wrap {
-    width: 140px;
+    width: min(52vw, 185px);
   }
 
   .intro-content p {
-    font-size: 0.98rem;
-    line-height: 1.23;
+    font-size: 1rem;
+    line-height: 1.22;
     margin-bottom: 0.7rem;
     letter-spacing: -0.014em;
   }
