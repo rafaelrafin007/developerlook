@@ -100,6 +100,10 @@ function ExpertisesSection() {
         const enterOffset = 108
         const baseRotations = [0, -1.2, 1.05, -0.7]
         const baseX = [0, 0.7, -0.6, 0.45]
+        const initialHoldDuration = 0.95
+        const stageHoldDuration = 0.85
+        const transitionDuration = 1
+        const timelineUnits = initialHoldDuration + (cardCount - 1) * (stageHoldDuration + transitionDuration)
 
         gsap.set(cards, {
           yPercent: (index) => (index === 0 ? 0 : enterOffset),
@@ -115,7 +119,7 @@ function ExpertisesSection() {
           scrollTrigger: {
             trigger: section,
             start: 'top top+=88',
-            end: () => `+=${Math.max((cardCount - 1) * window.innerHeight * 0.82, 1200)}`,
+            end: () => `+=${Math.max(timelineUnits * window.innerHeight * 0.45, 1500)}`,
             scrub: 0.45,
             pin: list,
             anticipatePin: 1,
@@ -123,18 +127,21 @@ function ExpertisesSection() {
           },
         })
 
+        timeline.to({}, { duration: initialHoldDuration })
+
         cards.slice(1).forEach((card, index) => {
           const previousCard = cards[index]
 
           timeline
+            .to({}, { duration: stageHoldDuration })
             .to(
               card,
               {
                 yPercent: 0,
-                duration: 1,
+                duration: transitionDuration,
                 ease: 'none',
               },
-              '+=0.24',
+              '>',
             )
             .to(
               previousCard,
@@ -142,7 +149,7 @@ function ExpertisesSection() {
                 scale: 0.968,
                 yPercent: -2.5,
                 opacity: 0.96,
-                duration: 1,
+                duration: transitionDuration,
                 ease: 'none',
               },
               '<',
