@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+
 const BRANDS = [
   {
     name: 'Bullit Digital',
@@ -46,6 +48,125 @@ const BRANDS = [
 ]
 
 function BrandsSection() {
+  const marqueeRef = useRef(null)
+  const trackRef = useRef(null)
+
+  useEffect(() => {
+    const marquee = marqueeRef.current
+    const track = trackRef.current
+    const firstRow = track?.querySelector('.brands-row')
+
+    if (!marquee || !track || !firstRow) {
+      return undefined
+    }
+
+    let rowWidth = 0
+    let offsetX = 0
+    let frameId = 0
+    let previousTime = performance.now()
+    let dragging = false
+    let pointerStartX = 0
+    let dragStartOffset = 0
+
+    const speedPxPerSecond = 48
+
+    const normalizeOffset = () => {
+      if (rowWidth <= 0) {
+        return
+      }
+
+      while (offsetX <= -rowWidth) {
+        offsetX += rowWidth
+      }
+
+      while (offsetX > 0) {
+        offsetX -= rowWidth
+      }
+    }
+
+    const applyOffset = () => {
+      track.style.transform = `translate3d(${offsetX}px, 0, 0)`
+    }
+
+    const measure = () => {
+      const trackStyles = window.getComputedStyle(track)
+      const trackGap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap || '0') || 0
+      rowWidth = firstRow.getBoundingClientRect().width + trackGap
+      normalizeOffset()
+      applyOffset()
+    }
+
+    const animate = (time) => {
+      const deltaSeconds = Math.min((time - previousTime) / 1000, 0.05)
+      previousTime = time
+
+      if (!dragging) {
+        offsetX -= speedPxPerSecond * deltaSeconds
+        normalizeOffset()
+        applyOffset()
+      }
+
+      frameId = window.requestAnimationFrame(animate)
+    }
+
+    const handlePointerDown = (event) => {
+      if (event.button !== undefined && event.button !== 0) {
+        return
+      }
+
+      dragging = true
+      pointerStartX = event.clientX
+      dragStartOffset = offsetX
+      marquee.classList.add('is-dragging')
+      marquee.setPointerCapture?.(event.pointerId)
+    }
+
+    const handlePointerMove = (event) => {
+      if (!dragging) {
+        return
+      }
+
+      offsetX = dragStartOffset + (event.clientX - pointerStartX)
+      normalizeOffset()
+      applyOffset()
+      event.preventDefault()
+    }
+
+    const stopDragging = (event) => {
+      if (!dragging) {
+        return
+      }
+
+      dragging = false
+      marquee.classList.remove('is-dragging')
+      marquee.releasePointerCapture?.(event.pointerId)
+    }
+
+    const resizeObserver = new ResizeObserver(measure)
+    resizeObserver.observe(firstRow)
+
+    measure()
+    frameId = window.requestAnimationFrame(animate)
+
+    marquee.addEventListener('pointerdown', handlePointerDown)
+    window.addEventListener('pointermove', handlePointerMove, { passive: false })
+    window.addEventListener('pointerup', stopDragging)
+    window.addEventListener('pointercancel', stopDragging)
+    window.addEventListener('resize', measure)
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      marquee.classList.remove('is-dragging')
+      resizeObserver.disconnect()
+      marquee.removeEventListener('pointerdown', handlePointerDown)
+      window.removeEventListener('pointermove', handlePointerMove)
+      window.removeEventListener('pointerup', stopDragging)
+      window.removeEventListener('pointercancel', stopDragging)
+      window.removeEventListener('resize', measure)
+      track.style.transform = ''
+    }
+  }, [])
+
   return (
     <section className="brands-section">
       <div className="page-shell">
@@ -55,8 +176,8 @@ function BrandsSection() {
           got hyped!!
         </h2>
 
-        <div className="brands-marquee" aria-label="Client logos">
-          <div className="brands-track">
+        <div ref={marqueeRef} className="brands-marquee" aria-label="Client logos">
+          <div ref={trackRef} className="brands-track">
             <div className="brands-row" role="list">
               {BRANDS.map((brand) => (
                 <article key={brand.name} className="brand-tile" role="listitem" aria-label={brand.name}>

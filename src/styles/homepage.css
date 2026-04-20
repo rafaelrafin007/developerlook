@@ -239,11 +239,6 @@
   transition: transform 0.18s ease, filter 0.18s ease;
 }
 
-.action-btn:hover {
-  transform: translateY(-1px);
-  filter: brightness(0.98);
-}
-
 .action-btn__label {
   transform: translateY(-0.01em);
 }
@@ -283,6 +278,23 @@
 .action-btn--outline .action-btn__icon {
   background: var(--gh-black);
   color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .action-btn:hover,
+  .action-btn:focus-visible {
+    transform: skewY(-4deg) rotate(-1deg) scale(1.02);
+    filter: none;
+  }
+
+  .action-btn:hover .action-btn__icon,
+  .action-btn:focus-visible .action-btn__icon {
+    transform: scale(0.92);
+  }
+
+  .action-btn:active {
+    transform: scale(0.95);
+  }
 }
 
 .header-results-btn {
@@ -1023,13 +1035,21 @@
   margin-top: clamp(1.35rem, 2.4vw, 2.1rem);
   overflow: hidden;
   user-select: none;
+  cursor: grab;
+  touch-action: pan-y;
+  padding-bottom: 1rem;
+}
+
+.brands-marquee.is-dragging {
+  cursor: grabbing;
 }
 
 .brands-track {
   width: max-content;
   display: flex;
   gap: 1vw;
-  animation: brands-slide-right 36s linear infinite;
+  animation: none;
+  will-change: transform;
 }
 
 .brands-row {
@@ -1049,6 +1069,7 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .brand-tile img {
@@ -1058,8 +1079,24 @@
   object-fit: contain;
 }
 
-.brands-marquee:hover .brands-track {
-  animation-play-state: paused;
+.brands-marquee.is-dragging .brand-tile {
+  box-shadow: 0 12px 24px #00000018;
+}
+
+.brands-marquee.is-dragging .brand-tile:nth-child(4n + 1) {
+  transform: rotate(-7deg) translateY(-10px) scale(1.01);
+}
+
+.brands-marquee.is-dragging .brand-tile:nth-child(4n + 2) {
+  transform: rotate(5deg) translateY(8px) scale(1.01);
+}
+
+.brands-marquee.is-dragging .brand-tile:nth-child(4n + 3) {
+  transform: rotate(-4deg) translateY(-6px) scale(1.01);
+}
+
+.brands-marquee.is-dragging .brand-tile:nth-child(4n + 4) {
+  transform: rotate(6deg) translateY(10px) scale(1.01);
 }
 
 @keyframes brands-slide-right {
@@ -1724,6 +1761,10 @@
 
   .expertise-card__copy {
     margin-top: 300px;
+  }
+
+  .expertise-card--green .expertise-card__copy {
+    margin-top: 260px;
   }
 
   .hero-copy h1 {
