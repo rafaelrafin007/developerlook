@@ -2044,35 +2044,105 @@
     border-color: #b3efd8;
   }
 
+  .work-section {
+    padding-block: 1.35rem 2.1rem;
+  }
+
+  .work-section .page-shell {
+    width: calc(100% - 1rem);
+  }
+
+  .work-intro {
+    max-width: none;
+  }
+
+  .work-intro h2 {
+    margin: 0;
+    font-size: clamp(1.9rem, 13vw, 3.2rem);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    max-width: 4.8ch;
+  }
+
+  .work-intro p {
+    margin: 0.75rem 0 0.92rem;
+    font-size: 0.96rem;
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    max-width: 19ch;
+  }
+
+  .work-intro .action-btn {
+    font-size: 0.92rem;
+    padding: 0.36rem 0.38rem 0.36rem 0.72rem;
+    border-radius: 0.72rem;
+  }
+
+  .work-grid {
+    margin-top: 1.15rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    overflow: visible;
+    padding-bottom: 0;
+    justify-items: stretch;
+  }
+
   .work-card {
-    flex-basis: 72vw;
-    border-width: 5px;
-    border-radius: 1.05rem;
-    padding: 0.28rem;
+    flex: none;
+    width: 100%;
+    margin-top: 0 !important;
+    border-width: 4px;
+    border-radius: 1.1rem;
+    padding: 0.22rem;
+    aspect-ratio: 0.78;
+    transform: rotate(0deg) !important;
+  }
+
+  .work-card:nth-child(1),
+  .work-card:nth-child(2),
+  .work-card:nth-child(3) {
+    margin-top: 0 !important;
+    transform: rotate(0deg) !important;
   }
 
   .work-card__media {
-    border-radius: 0.9rem;
+    border-radius: 0.92rem;
   }
 
   .work-card__overlay {
-    left: 0.45rem;
-    right: 0.45rem;
-    bottom: 0.45rem;
-    border-radius: 0.72rem;
-    padding: 1.6rem 0.62rem 0.62rem;
-    clip-path: polygon(0 34%, 100% 13%, 100% 100%, 0 100%);
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    border-radius: 0.76rem;
+    padding: 1.7rem 0.72rem 0.72rem;
+    clip-path: polygon(0 34%, 100% 12%, 100% 100%, 0 100%);
   }
 
   .work-card__overlay h3 {
     font-size: 1rem;
+    line-height: 1.05;
+    max-width: 15ch;
+  }
+
+  .work-card__overlay span {
+    margin-top: 0.52rem;
+    font-size: 0.78rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.38rem;
   }
 
   .work-card__arrow {
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.95rem;
+    height: 1.95rem;
     right: 0.72rem;
-    bottom: 1.7rem;
+    bottom: 1.85rem;
+  }
+
+  .work-card__arrow svg {
+    width: 0.82rem;
+    height: 0.82rem;
   }
 
   .brands-section h2 {
