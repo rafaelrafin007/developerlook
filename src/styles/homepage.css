@@ -620,8 +620,8 @@
 }
 
 .intro-scroll-btn:hover {
-  background: #fff;
-  border-color: #0000006a;
+  background: transparent;
+  border-color: #00000052;
 }
 
 .intro-scroll-btn__icons {
@@ -645,7 +645,7 @@
 }
 
 .intro-scroll-btn__icon.is-next {
-  transform: translate(-50%, -185%);
+  transform: translate(-50%, -245%);
 }
 
 @media (hover: hover) and (pointer: fine) {
