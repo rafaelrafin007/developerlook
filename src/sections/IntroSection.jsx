@@ -6,11 +6,11 @@ function IntroSection() {
     <section id="about" className="intro-section">
       <div className="page-shell">
         <h2 className="intro-title">
-          Wij maken content die opvalt. Die
+          Wij maken content die opvalt. Die{' '}
           <br className="intro-title-break" />
-          blijft hangen. Die jouw doelgroep
+          blijft hangen. Die jouw doelgroep{' '}
           <br className="intro-title-break" />
-          raakt en jouw merk in beweging
+          raakt en jouw merk in beweging{' '}
           <br className="intro-title-break" />
           brengt. Snel, krachtig en energiek.
         </h2>
