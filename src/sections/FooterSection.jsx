@@ -150,6 +150,7 @@ function FooterSection() {
     <footer id="contact" className="site-footer">
       <div className="page-shell">
         <div className="site-footer__divider" />
+
         <div className="site-footer__cta" ref={trailAreaRef}>
           <div className="site-footer__trail-layer" ref={trailLayerRef} aria-hidden="true" />
           <h2>Let&apos;s Get Hyped!</h2>
@@ -166,6 +167,16 @@ function FooterSection() {
         </div>
 
         <div className="site-footer__panel">
+          <div className="site-footer__mobile-top">
+            <HypedLogo className="site-footer__mobile-logo" />
+            <ActionButton
+              href="#contact"
+              label="Get Hyped! Neem contact op"
+              icon="spark"
+              className="site-footer__mobile-panel-cta"
+            />
+          </div>
+
           <div className="site-footer__sticker" aria-hidden="true">
             <svg className="site-footer__sticker-ring" viewBox="0 0 100 100" role="presentation" aria-hidden="true">
               <defs>
@@ -219,6 +230,7 @@ function FooterSection() {
               <br />
               7141 AL Groenlo
             </p>
+
             <a href="#contact">Privacyvoorwaarden</a>
           </div>
 
