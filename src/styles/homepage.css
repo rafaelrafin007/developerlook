@@ -358,7 +358,7 @@
   .header-results-btn:hover::before,
   .header-results-btn:focus-visible::before {
     border-radius: 0.5em;
-    width: calc(100% - 0.5em);
+    width: 100%;
   }
 
   .header-results-btn:hover .action-btn__icon,
@@ -690,7 +690,7 @@
 
 .expertises-section.is-scroll-stack .expertise-card {
   position: absolute;
-  inset: 0;
+  inset: 8px;
   margin: 0;
   border-radius: clamp(1.45rem, 2.15vw, 2.22rem);
   box-shadow: 0 18px 38px #00000014;
@@ -746,7 +746,7 @@
 .expertise-card__top h2 {
   grid-area: title;
   margin: 0;
-  font-size: clamp(2.52rem, 5.1vw, 4.74rem);
+  font-size: clamp(2.68rem, 5.35vw, 4.95rem);
   line-height: 0.9;
   letter-spacing: -0.04em;
 }
@@ -1177,6 +1177,36 @@
 .footer-results-btn .action-btn__icon {
   background: #fff;
   color: var(--gh-red);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__cta-buttons .footer-mail-btn,
+  .site-footer__cta-buttons .footer-results-btn {
+    transform-origin: left center;
+  }
+
+  .site-footer__cta-buttons .footer-mail-btn:hover,
+  .site-footer__cta-buttons .footer-mail-btn:focus-visible,
+  .site-footer__cta-buttons .footer-results-btn:hover,
+  .site-footer__cta-buttons .footer-results-btn:focus-visible {
+    transform: skewY(-4deg) rotate(-1deg) scale(1.02);
+    filter: none;
+  }
+
+  .site-footer__cta-buttons .action-btn:hover,
+  .site-footer__cta-buttons .action-btn:focus-visible {
+    transform: skewY(-4deg) rotate(-1deg) scale(1.02);
+    filter: none;
+  }
+
+  .site-footer__cta-buttons .action-btn:hover .action-btn__icon,
+  .site-footer__cta-buttons .action-btn:focus-visible .action-btn__icon {
+    transform: scale(0.92);
+  }
+
+  .site-footer__cta-buttons .action-btn:active {
+    transform: scale(0.95);
+  }
 }
 
 .site-footer__panel {
