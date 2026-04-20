@@ -1582,7 +1582,7 @@
 
   .intro-grid {
     grid-template-columns: 1fr;
-    margin-top: 1.1rem;
+    margin-top: 1rem;
     gap: 1rem;
     align-items: start;
   }
@@ -1593,15 +1593,21 @@
 
   .intro-title {
     margin-left: 0;
+    max-width: 8.6ch;
   }
 
   .intro-image-wrap {
-    width: min(52vw, 235px);
+    order: 1;
+    width: min(58vw, 235px);
   }
 
   .intro-content {
-    max-width: 34rem;
+    order: 2;
+    max-width: 22rem;
     margin-left: 0;
+    transform: none;
+    align-self: start;
+    justify-self: start;
   }
 
   .intro-scroll-btn {
@@ -1903,27 +1909,58 @@
     display: none;
   }
 
-  .intro-section {
-    padding-block: 1.7rem 2.2rem;
+    .intro-section {
+    padding-block: 1.45rem 2rem;
   }
 
   .intro-title {
-    font-size: clamp(1.6rem, 9.44vw, 2.64rem);
+    font-size: clamp(1.72rem, 10.9vw, 3rem);
+    line-height: 0.92;
+    letter-spacing: -0.048em;
     margin-left: 0;
-    max-width: 11ch;
+    max-width: 8.15ch;
+  }
+
+  .intro-grid {
+    margin-top: 0.92rem;
+    gap: 0.9rem;
   }
 
   .intro-image-wrap {
-    width: min(52vw, 185px);
+    width: min(74vw, 255px);
+    aspect-ratio: 4 / 4.95;
+  }
+
+  .intro-image--desktop {
+    display: none !important;
+  }
+
+  .intro-image--mobile {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .intro-content {
+    max-width: 17.8rem;
   }
 
   .intro-content p {
-    font-size: 1rem;
-    line-height: 1.22;
-    margin-bottom: 0.7rem;
-    letter-spacing: -0.014em;
+    max-width: 17ch;
+    font-size: 0.96rem;
+    line-height: 1.16;
+    margin-bottom: 0;
+    letter-spacing: -0.018em;
   }
 
+  .intro-content .action-btn {
+    margin-top: 0.82rem;
+    font-size: 0.9rem;
+    padding: 0.36rem 0.38rem 0.36rem 0.72rem;
+    border-radius: 0.72rem;
+  }
   .expertises-section {
     padding-block: 0.8rem 1.45rem;
   }

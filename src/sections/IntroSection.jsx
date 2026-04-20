@@ -1,6 +1,8 @@
 import ActionButton from '../components/ActionButton'
 import introImage from '../assets/gethyped/intro-annie.webp'
 
+const INTRO_MOBILE_VIDEO = '' // paste the live mobile intro video URL here
+
 function IntroSection() {
   return (
     <section id="about" className="intro-section">
@@ -17,7 +19,33 @@ function IntroSection() {
 
         <div className="intro-grid">
           <div className="intro-image-wrap">
-            <img src={introImage} alt="Team member in orange outfit" className="intro-image" />
+            <img
+              src={introImage}
+              alt="Team member in orange outfit"
+              className="intro-image intro-image--desktop"
+            />
+
+            {INTRO_MOBILE_VIDEO ? (
+              <video
+                className="intro-image intro-image--mobile"
+                muted
+                loop
+                playsInline
+                autoPlay
+                preload="metadata"
+                poster={introImage}
+                style={{ display: 'none' }}
+              >
+                <source src={INTRO_MOBILE_VIDEO} type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src={introImage}
+                alt="Team member in orange outfit"
+                className="intro-image intro-image--mobile"
+                style={{ display: 'none' }}
+              />
+            )}
           </div>
 
           <div className="intro-content">
