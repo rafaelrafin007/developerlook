@@ -701,7 +701,11 @@
 }
 
 .expertise-card--white .expertise-number {
-  color: var(--gh-cream);
+  color: #dfd9ce;
+}
+
+.expertise-card--white .expertise-label {
+  background: #dfd9ce;
 }
 
 .expertise-card--pink {
@@ -793,7 +797,7 @@
 .expertise-card__media {
   position: absolute;
   right: clamp(1rem, 2.3vw, 2.7rem);
-  top: calc(clamp(8rem, 10.7vw, 11.25rem) - 450px);
+  top: calc(clamp(8rem, 10.7vw, 11.25rem) - 420px);
   width: clamp(250px, 24vw, 368px);
   border-radius: 1.35rem;
   overflow: hidden;
