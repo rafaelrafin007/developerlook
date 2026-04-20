@@ -1909,37 +1909,124 @@
     letter-spacing: -0.014em;
   }
 
+  .expertises-section {
+    padding-block: 0.8rem 1.45rem;
+  }
+
+  .expertises-section .page-shell {
+    width: calc(100% - 1rem);
+  }
+
+  .expertises-list {
+    display: block;
+    padding-bottom: 0.2rem;
+  }
+
   .expertise-card {
-    border-radius: 0.95rem;
-    padding: 0.74rem;
+    position: sticky;
+    top: 5.35rem;
+    min-height: calc(100svh - 6.2rem);
+    border-radius: 1.08rem;
+    padding: 0.92rem 0.92rem 1rem;
+    box-shadow: none;
+    overflow: hidden;
+  }
+
+  .expertise-card + .expertise-card {
+    margin-top: -10.25rem;
+  }
+
+  .expertise-card:nth-child(1) {
+    z-index: 1;
+  }
+
+  .expertise-card:nth-child(2) {
+    z-index: 2;
+  }
+
+  .expertise-card:nth-child(3) {
+    z-index: 3;
+  }
+
+  .expertise-card:nth-child(4) {
+    z-index: 4;
   }
 
   .expertise-label {
-    font-size: 0.98rem;
+    font-size: 0.92rem;
+    padding: 0.24rem 0.46rem;
+    border-radius: 0.34rem;
   }
 
   .expertise-number {
-    font-size: clamp(1.85rem, 8vw, 2.35rem);
+    font-size: clamp(2.8rem, 13vw, 4rem);
+    line-height: 0.9;
+  }
+
+  .expertise-card__top {
+    row-gap: 0.34rem;
   }
 
   .expertise-card__top h2 {
-    font-size: clamp(2.22rem, 14.4vw, 3.6rem);
+    font-size: clamp(3rem, 15vw, 4.25rem);
+    line-height: 0.88;
+    max-width: 7.3ch;
   }
 
   .expertise-card__content {
-    grid-template-columns: 1fr;
+    margin-top: 0.45rem;
+    min-height: calc(100svh - 15rem);
+    padding-right: 0;
+    display: block;
+    position: relative;
+  }
+
+  .expertise-card__copy {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: 16rem;
+    margin-top: 0;
+  }
+
+  .expertise-card__copy h3 {
+    margin: 0 0 0.32rem;
+    font-size: 0.98rem;
+    line-height: 1.06;
   }
 
   .expertise-card__copy p {
-    font-size: 0.9rem;
-    max-width: 32ch;
+    margin: 0 0 0.72rem;
+    font-size: 0.92rem;
+    line-height: 1.18;
+    max-width: 24ch;
+  }
+
+  .expertise-card__copy .action-btn {
+    font-size: 0.84rem;
   }
 
   .expertise-card__media {
-    width: min(48vw, 185px);
-    margin-top: 0.5rem;
-    margin-left: auto;
-    border-width: 3px;
+    position: absolute;
+    right: 0.45rem;
+    bottom: 6rem;
+    width: min(38vw, 140px);
+    margin: 0;
+    border-width: 4px;
+    border-radius: 1rem;
+    transform: rotate(2deg);
+  }
+
+  .expertise-card--white .expertise-card__media {
+    left: 1rem;
+    right: auto;
+    bottom: 9rem;
+    width: min(35vw, 132px);
+    transform: rotate(2deg);
+  }
+
+  .expertise-card--green .expertise-card__media {
+    border-color: #b3efd8;
   }
 
   .work-card {
