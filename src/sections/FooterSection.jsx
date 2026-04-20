@@ -167,7 +167,19 @@ function FooterSection() {
 
         <div className="site-footer__panel">
           <div className="site-footer__sticker" aria-hidden="true">
-            <span className="site-footer__sticker-ring">Get Results - Get Hyped - Get Noticed -</span>
+            <svg className="site-footer__sticker-ring" viewBox="0 0 100 100" role="presentation" aria-hidden="true">
+              <defs>
+                <path
+                  id="footer-sticker-ring"
+                  d="M 50,50 m -33,0 a 33,33 0 1,1 66,0 a 33,33 0 1,1 -66,0"
+                />
+              </defs>
+              <text>
+                <textPath href="#footer-sticker-ring" startOffset="0%">
+                  GET HYPED • GET NOTICED • GET RESULTS •
+                </textPath>
+              </text>
+            </svg>
             <span className="site-footer__sticker-core">GH</span>
           </div>
 
